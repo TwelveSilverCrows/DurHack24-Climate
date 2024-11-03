@@ -23,10 +23,10 @@ def climate_sentiment(text):
     "reduce, reuse, recycle", "sustainable agriculture", "conservation", 
     "reforestation", "afforestation", "climate action", "climate justice",
     "climate resilience", "adaptation", "mitigation", "sustainable development",
-    "circular economy", "green technology", "eco-innovation"
+    "circular economy", "green technology", "eco-innovation", "reduce"
 ]
     negative_tokens = [
-    "fossil fuels", "coal", "oil", "gas", "pollution", "emissions", 
+    "do nothing","fossil fuels", "coal", "oil", "gas", "pollution", "emissions", 
     "carbon emissions", "greenhouse gas emissions", "climate change", 
     "global warming", "climate crisis", "climate emergency", "deforestation", 
     "overconsumption", "waste", "plastic pollution", "air pollution", 
@@ -207,7 +207,7 @@ def update_sea():
 def update_temps():
     global greenhouse_effect, temps, temp_changes, year, albedo, temp_rise, time_jumps
     global current_temp
-    current_temp=calculate_temperature(greenhouse_effect, albedo)
+    calculate_temperature(greenhouse_effect, albedo)
     if temps:
         temp_rise = current_temp - temps[-1]
         temp_changes.append(temp_rise)
