@@ -156,7 +156,7 @@ def climate_decisions():
         print("Well done for making such a great decision!")
     elif 0.1<=clim_rank<0.2:
         print("Not bad, keep going!")
-        greenhouse_effect+=0.0005
+        greenhouse_effect+=0.005
     elif -0.2<=clim_rank<0.1:
         print("Careful! Remember, there are lots of people counting on you..")
         greenhouse_effect+=0.015
@@ -261,7 +261,7 @@ for question in questions:
     update_sea()
     endings()
     year+=1
-    print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",current_temp, "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
+    print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",temps[-1], "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
 
     
     
