@@ -128,8 +128,10 @@ global temp_rise
 temp_rise=0
     
 global sea_level_rise
-sea_level_rise=float(0)
+sea_level_rise=0
 
+global total_temp_rise
+total_temp_rise=0
 
 global budget_tracker
 budget_tracker = []
@@ -209,7 +211,7 @@ def update_sea():
 def update_temps():
     global greenhouse_effect, temps, temp_changes, year, albedo, temp_rise, time_jumps
     global current_temp
-    calculate_temperature(greenhouse_effect, albedo)
+    calculate_temperature()
     if temps:
         temp_rise = current_temp - temps[-1]
         temp_changes.append(temp_rise)
@@ -241,7 +243,7 @@ def endings():
             budget-=5
             print("You now have", budget, " budget points.")
             
-        elif T_cel > 30:
+        elif T_cel > 20:
             print("Oh no! The average global temperature rose above 30°C. 35 degrees Celsius is the absolute limit of human tolerance. Better luck next time!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
@@ -260,6 +262,7 @@ for question in questions:
     calculate_temperature()
     calculate_sea_level()
     calulate_albedo()
+    update_temps()
     update_sea()
     endings()
     year+=1
