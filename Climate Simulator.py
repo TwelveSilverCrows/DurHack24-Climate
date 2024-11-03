@@ -5,6 +5,8 @@ import time
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.sentiment import SentimentIntensityAnalyzer
+from matplotlib import image as img
+from matplotlib import pyplot as plt
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
@@ -58,28 +60,8 @@ questions = [
     "Rising sea levels threaten Costa Rica. What strategy should you prioritize?",
     "How can you reduce energy consumption in China?",
     "How can you address emissions from agriculture in Bangladesh?",
-    "How can you raise awareness about climate change in the US?",
-    "Australia is experiencing extreme heatwaves due to climate change. How should you respond?",
-    "Somalia is susceptible to droughts due to changing climate patterns. What's the best strategy?",
-    "South Africa relies heavily on coal for energy. How can you reduce carbon emissions?",
-    "Norway faces increased hurricane risks due to climate change. What should you prioritize?",
-    "Bahrain suffers from air pollution, impacting public health. What's the best approach?",
-    "The UK's energy grid is outdated and inefficient. How should you modernize it?",
-    "Gibraltar is at risk of saltwater intrusion due to rising sea levels. What's your plan?",
-    "Ghana's agricultural sector is struggling due to climate change. What's your response?",
-    "Vietnam faces frequent flooding due to climate change. What's your top priority?",
-    "The US relies heavily on cars with internal combustion engines. How can you reduce emissions from transportation?",
-    "Tunisia is experiencing beach erosion due to rising sea levels. What's your plan?",
-    "Your government is aiming to achieve carbon neutrality. What's your primary strategy?",
-    "There's a waste management crisis in Turkey! How should you address it?",
-    "Greece is facing water scarcity. What's the best approach to conserve water?",
-    "Russia has significant forest cover. How will you protect it from deforestation?",
-    "Burundi's transportation system is outdated. What's your priority for improvement?",
-    "Japan faces ocean acidification. How should you address this issue?",
-    "Brazil is a major emitter of methane. How can you reduce methane emissions?",
-    "How can you address emissions from agriculture?",
-    "How can you reduce energy consumption in Europe?",
-    "You're trying to promote the use of sustainable transportation options in urban areas. How do you do it?"
+    "How can you raise awareness about climate change in the US?"
+
 ]
 
 
@@ -248,6 +230,28 @@ def endings():
             print("You led the world through these difficult times. Let’s see how you did!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
+            
+def graphs():
+    global temps, sea_levels, time_jumps
+
+    # Create a figure for both graphs
+    fig, (temp_axis,sea_axis) = plt.subplots(1,2,figsize=(12, 6))
+    # Plot temperature data
+    temp_axis.plot(time_jumps, temps)
+    temp_axis.set_title("How temperature changed against time")
+    temp_axis.set_xlabel('Time')
+    temp_axis.set_ylabel('Temperature')
+
+    # Plot sea level data
+    sea_axis.plot(time_jumps, sea_levels)
+    sea_axis.set_title("How sea level rise changed against time")
+    sea_axis.set_xlabel('Time')
+    sea_axis.set_ylabel('Sea Level Rise')
+
+    #save figures as one image
+    plt.suptitle('Close this window to return to the game!')
+    plt.show()
+    
 
 
 for question in questions:
@@ -267,6 +271,7 @@ for question in questions:
     print(sea_levels)
     print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",temps[-1], "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
 
+graphs()
     
     
     
