@@ -130,8 +130,6 @@ temp_rise=0
 global sea_level_rise
 sea_level_rise=float(0)
 
-global total_temp_rise
-total_temp_rise=0
 
 global budget_tracker
 budget_tracker = []
@@ -166,7 +164,7 @@ def climate_decisions():
     greenhouse_tracker.append(greenhouse_effect)
     
 def calculate_temperature():
-    global greenhouse_effect, albedo, T_cel
+    global greenhouse_effect, albedo, T_cel, temps, current_temp, temp_rise
     pi = 3.14159
     sigma = 5.6703e-8 # e is '10^'
     mass_of_sun = 1.989e30
@@ -185,6 +183,9 @@ def calculate_temperature():
     
     # Converting to Celsius
     T_cel = T_kel - 273
+    current_temp=T_cel
+    temps.append(T_cel)
+    temp_rise=temps[-1]-temps[-2]
 
 def calculate_sea_level():
     global temp_changes
