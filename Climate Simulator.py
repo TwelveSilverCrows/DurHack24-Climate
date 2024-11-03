@@ -82,9 +82,7 @@ questions = [
     "You're trying to promote the use of sustainable transportation options in urban areas. How do you do it?"
 ]
 
-#test block
-print(climate_sentiment(text1))
-print(climate_sentiment(text2))
+
 global clim_rank
 clim_rank =0
 
@@ -186,7 +184,6 @@ def calculate_temperature():
     # Converting to Celsius
     T_cel = T_kel - 273
     current_temp=T_cel
-    temps.append(T_cel)
     if len(temps)>1:
         temp_rise=temps[-1]-temps[-2]
 
@@ -222,33 +219,32 @@ def update_temps():
     
 def endings():
     global budget, temp_rise, temps
-    if sea_level_rise:
-        if  budget<= 0:
+    if  budget<= 0:
             print("Oh no! You ran out of money… Better luck next time!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
-        elif temp_rise >= 1:
-            print("Oh no! You failed to stop global warming in time.")
+    elif temp_rise >= 1:
+            print("Oh no! Global Warming means that there are more natural disasters")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
             
-        elif 0.75<=temp_rise<1:
+    elif 0.75<=temp_rise<1:
             print("Your city experiences harsh drought due to rising temperatures.")
             print("You have to hand out bottled water and put limits on household use of it too. This uses up 5 budget points....")
             budget-=5
             print("You now have", budget, " budget points.")
             
-        elif sea_level_rise>1.85:
+    elif sea_level_rise>1.85:
             print("Your city experiences flooding due to rising sea levels. The repairs to infrastructure take 5 budget points...")
             budget-=5
             print("You now have", budget, " budget points.")
             
-        elif temps[-1] > 20:
+    elif temps[-1] > 20:
             print("Oh no! The average global temperature rose above 30°C. 35 degrees Celsius is the absolute limit of human tolerance. Better luck next time!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
         
-        elif level == 4:
+    elif level == 4:
             print("You led the world through these difficult times. Let’s see how you did!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
@@ -267,6 +263,7 @@ for question in questions:
     endings()
     year+=1
     print(temps)
+    print(temp_changes)
     print(sea_levels)
     print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",temps[-1], "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
 
