@@ -266,9 +266,9 @@ for question in questions:
     update_sea()
     endings()
     year+=1
-    print(temps)
-    print(temp_changes)
-    print(sea_levels)
+    print("Temperatures: ",temps)
+    print("Temperature changes: " ,temp_changes)
+    print("Sea levels: ",sea_levels)
     print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",temps[-1], "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
 
 graphs()
