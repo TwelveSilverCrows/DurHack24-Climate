@@ -3,26 +3,44 @@ import math
 import time
 
 import nltk
-nltk.download()
 from nltk.tokenize import word_tokenize
 from nltk.sentiment import SentimentIntensityAnalyzer
 
-def process_user_input(user_input):
-  # Tokenize the input
-  tokens = word_tokenize(user_input)
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-  # Perform sentiment analysis
+def climate_sentiment(text):
   sia = SentimentIntensityAnalyzer()
-  sentiment = sia.polarity_scores(user_input)
+  sentiment = sia.polarity_scores(text)
 
-  # Basic decision-making based on sentiment
-  if sentiment['compound'] > 0.5:
-    print("Positive decision: Consider the environmental impact.")
-  elif sentiment['compound'] < -0.5:
-    print("Negative decision: This could worsen climate change.")
-  else:
-    print("Neutral decision: Please consider the long-term consequences.")
+  # Add custom sentiment scores for climate-related terms
+ positive_tokens = [
+    "renewable energy", "clean energy", "sustainable", "eco-friendly", 
+    "climate-friendly", "greenhouse gas reduction", "carbon neutral", 
+    "carbon footprint reduction", "low-carbon", "zero-carbon", 
+    "solar power", "wind power", "hydro power", "geothermal energy", 
+    "bioenergy", "energy efficiency", "electric vehicle", "EV", 
+    "public transportation", "cycling", "walking", "plant-based diet", 
+    "reduce, reuse, recycle", "sustainable agriculture", "conservation", 
+    "reforestation", "afforestation", "climate action", "climate justice",
+    "climate resilience", "adaptation", "mitigation", "sustainable development",
+    "circular economy", "green technology", "eco-innovation"
+]
+    for keyword in positive_keywords:
+        if keyword in text.lower():
+          sentiment['compound'] += 0.2  # Adjust this value as needed
+    for keyword in negative_keywords:
+        if keyword in text.lower():
+          sentiment['compound'] -= 0.2  # Adjust this value as needed
+        
 
-# Example usage
-user_input = "I want to invest in renewable energy."
-process_user_input(user_input)
+    
+    
+
+  return sentiment['compound']
+
+# Example usage:
+text1 = "We should invest more in renewable energy to combat climate change."
+text2 = "Fossil fuels are essential for economic growth."
+
+print(climate_sentiment(text1))
+print(climate_sentiment(text2))
