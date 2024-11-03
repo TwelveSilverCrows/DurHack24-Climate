@@ -185,7 +185,8 @@ def calculate_temperature():
     T_cel = T_kel - 273
     current_temp=T_cel
     temps.append(T_cel)
-    temp_rise=temps[-1]-temps[-2]
+    if len(temps)>1:
+        temp_rise=temps[-1]-temps[-2]
 
 def calculate_sea_level():
     global temp_changes
@@ -262,6 +263,8 @@ for question in questions:
     update_sea()
     endings()
     year+=1
+    print(temps)
+    print(sea_levels)
     print("Year:",year, "greenhouse:",greenhouse_effect, "temp:",temps[-1], "temp rise:",temp_rise, "sea rise:",sea_level_rise, "albedo:", albedo)
 
     
