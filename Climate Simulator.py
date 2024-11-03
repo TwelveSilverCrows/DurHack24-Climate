@@ -178,7 +178,7 @@ def calculate_temperature():
     T_eff = math.sqrt(math.sqrt((1 - albedo) * solar_luminosity / (4 * pi * sigma))) * 1 / math.sqrt(2 * distance)
     
     # Equivalent temperature below, which is temperature when the system is in equilibrium (energy is balanced)
-    T_eq = (T_eff**2) * (1+(0.24 * greenhouse_effect))
+    T_eq = (T_eff**2) * (1+(0.3 * greenhouse_effect))
 
     # Temperature in Kelvin
     T_kel = math.sqrt(T_eq/0.9)
@@ -221,7 +221,7 @@ def update_temps():
     time_jumps.append(year)
     
 def endings():
-    global budget, temp_rise, T_cel
+    global budget, temp_rise, temps
     if sea_level_rise:
         if  budget<= 0:
             print("Oh no! You ran out of money… Better luck next time!")
@@ -243,7 +243,7 @@ def endings():
             budget-=5
             print("You now have", budget, " budget points.")
             
-        elif T_cel > 20:
+        elif temps[-1] > 20:
             print("Oh no! The average global temperature rose above 30°C. 35 degrees Celsius is the absolute limit of human tolerance. Better luck next time!")
             print("You were left with", budget, "budget points.")       
             print("The global average temperature was", T_cel, "degrees Celsius, which was a", temp_rise, "degrees Celsius rise from last year.")
